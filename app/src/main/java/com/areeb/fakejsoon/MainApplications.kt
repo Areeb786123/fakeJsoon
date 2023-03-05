@@ -1,4 +1,7 @@
 package com.areeb.fakejsoon
 
-class MainApplications {
-}
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
+@HiltAndroidApp
+class MainApplications : Application()
