@@ -14,7 +14,7 @@ class HomeRepository @Inject constructor(
 ) {
     fun getAllUsers(): Flow<Resource<UserResponseDto>> {
         return flow {
-            val userResponse = remoteOperation.getAllUsers()
+            val userResponse = remoteOperation.getAllUsers(1)
             emit(userResponse)
         }.flowOn(Dispatchers.IO)
     }
