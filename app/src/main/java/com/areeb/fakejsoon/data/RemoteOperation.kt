@@ -7,7 +7,7 @@ import javax.inject.Inject
 class RemoteOperation @Inject constructor(private val homeApi: HomeApi) :
     IRemoteOperation,
     SafeApi {
-    override suspend fun getAllUsers(): Resource<UserResponseDto> {
-        return safeApiCall { homeApi.getUsers() }
+    override suspend fun getAllUsers(page:Int): Resource<UserResponseDto> {
+        return safeApiCall { homeApi.getUsers(page) }
     }
 }
