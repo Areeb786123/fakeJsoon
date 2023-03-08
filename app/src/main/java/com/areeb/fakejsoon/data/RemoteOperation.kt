@@ -1,6 +1,5 @@
 package com.areeb.fakejsoon.data
 
-import com.areeb.fakejsoon.data.models.Data
 import com.areeb.fakejsoon.data.models.UserResponseDto
 import com.areeb.fakejsoon.data.network.remote.api.home.HomeApi
 import javax.inject.Inject
