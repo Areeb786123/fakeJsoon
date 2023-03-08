@@ -1,5 +1,6 @@
 package com.areeb.fakejsoon.data
 
+import com.areeb.fakejsoon.data.models.Data
 import com.areeb.fakejsoon.data.models.UserResponseDto
 
 interface IRemoteOperation {
