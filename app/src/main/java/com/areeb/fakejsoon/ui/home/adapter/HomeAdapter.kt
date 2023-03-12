@@ -1,5 +1,6 @@
 package com.areeb.fakejsoon.ui.home.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -8,7 +9,8 @@ import com.areeb.fakejsoon.databinding.HomeItemBinding
 import com.areeb.fakejsoon.ui.common.DiffCallBack
 import com.areeb.fakejsoon.ui.home.viewHolder.HomeViewHolder
 
-class HomeAdapter : PagingDataAdapter<Data, HomeViewHolder>(DiffCallBack()) {
+class HomeAdapter(private val context: Context) :
+    PagingDataAdapter<Data, HomeViewHolder>(DiffCallBack()) {
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         getItem(position)?.let {
             holder.bind(it)
@@ -21,6 +23,6 @@ class HomeAdapter : PagingDataAdapter<Data, HomeViewHolder>(DiffCallBack()) {
             parent,
             false,
         )
-        return HomeViewHolder(binding)
+        return HomeViewHolder(binding, context)
     }
 }

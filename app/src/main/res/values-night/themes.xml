@@ -13,4 +13,8 @@
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="CustomBottomSheetDialog" parent="Theme.Design.BottomSheetDialog">
+        <item name="android:background">@drawable/bottom_sheet_fragment_bg</item>
+    </style>
 </resources>
