@@ -3,4 +3,5 @@
 <h1>This app have all 
 the functionality of api operation with good Architectural Patterns and all the latest tech like MVVM patter, Dagger-hilt , Retrofit, StateFlow , Sealed Class and Kotlin Coroutine 🚀  </h1>
 
-<img src="https://user-images.githubusercontent.com/56149022/223805091-03aca7c0-5125-430c-8671-c63262df2cdc.png" alt="ALT_TEXT" style="max-width:100%; height:auto;">
+
+![fake jasson](https://user-images.githubusercontent.com/56149022/224538251-de4e6d61-eeb2-4318-ad08-e5b9755556db.jpg)
