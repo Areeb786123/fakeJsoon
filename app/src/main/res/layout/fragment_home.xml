@@ -21,4 +21,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/postFabIcon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/size_20"
+        android:layout_marginEnd="@dimen/size_20"
+        android:src="@drawable/ic_add_post"
+        app:backgroundTint="@color/cerulean"
+        android:scaleType="centerCrop"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

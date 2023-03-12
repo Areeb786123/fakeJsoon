@@ -8,16 +8,21 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.areeb.fakejsoon.databinding.FragmentHomeBinding
 import com.areeb.fakejsoon.ui.home.adapter.HomeAdapter
+import com.areeb.fakejsoon.ui.home.dialog.PostDialog
 import com.areeb.fakejsoon.ui.home.viewModel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), View.OnClickListener {
     private val viewModel: HomeViewModel by viewModels()
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private var homeAdapter: HomeAdapter? = null
+
+    @Inject
+    lateinit var postDialog: PostDialog
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,6 +41,7 @@ class HomeFragment : Fragment() {
 
     private fun setUpViews() {
         settingUpRecyclerView()
+        setOnClick()
     }
 
     private fun observer() {
@@ -45,9 +51,21 @@ class HomeFragment : Fragment() {
     }
 
     private fun settingUpRecyclerView() {
-        homeAdapter = HomeAdapter()
-        binding.recyclerView.let {
-            it.adapter = homeAdapter
+        homeAdapter = context?.let { HomeAdapter(it) }
+        binding.recyclerView.adapter = homeAdapter
+    }
+
+    private fun setOnClick() {
+        binding.let {
+            it.postFabIcon.setOnClickListener(this)
+        }
+    }
+
+    override fun onClick(view: View?) {
+        when (view?.id) {
+            binding.postFabIcon.id -> {
+                activity?.supportFragmentManager?.let { postDialog.show(it, "postDialog") }
+            }
         }
     }
 }

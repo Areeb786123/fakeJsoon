@@ -11,13 +11,6 @@ import javax.inject.Inject
 class HomeRepository @Inject constructor(
     private val remoteOperation: RemoteOperation,
 ) {
-//    fun getAllUsers(): Flow<Resource<UserResponseDto>> {
-//        return flow {
-//            val userResponse = remoteOperation.getAllUsers(1)
-//            emit(userResponse)
-//        }.flowOn(Dispatchers.IO)
-//    }
-
     fun getAllUsers(scope: CoroutineScope) = Pager(
         config = PagingConfig(pageSize = 20, maxSize = 100),
         pagingSourceFactory = {
