@@ -60,4 +60,12 @@ class PostDialog @Inject constructor() : BottomSheetDialogFragment(), View.OnCli
             }
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+        binding.let {
+            it.userJobEditText.text.clear()
+            it.userJobEditText.text.clear()
+        }
+    }
 }
