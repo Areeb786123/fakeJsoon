@@ -4,12 +4,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.areeb.fakejsoon.utils.Constants.PERSON_TABLE
 
 @Dao
 interface PersonDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPerson(personDto: List<Person>)
+    suspend fun insertUser(personEntity: List<PersonEntity>)
 
-    @Query("SELECT * FROM person")
-    fun getPersons(): List<Person>
+    @Query("SELECT * FROM $PERSON_TABLE")
+    suspend fun getAllUsers(): List<PersonEntity>
 }
