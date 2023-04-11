@@ -1,20 +1,28 @@
 package com.areeb.fakejsoon.ui.home.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.areeb.fakejsoon.data.RemoteOperation
 import com.areeb.fakejsoon.data.models.Data
-import com.areeb.fakejsoon.data.repository.home.HomeRepository
+import com.areeb.fakejsoon.data.network.local.PersonDao
+import com.areeb.fakejsoon.ui.home.pagination.PaginationSource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val remoteOperation: RemoteOperation,
+    private val personDao: PersonDao,
+) : ViewModel() {
     companion object {
         private const val TAG = "homeViewModel"
     }
@@ -23,28 +31,18 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     val user: LiveData<PagingData<Data>>
         get() = _user
 
-    init {
-        getAllUsers()
+    private fun getAllUsersFromServer(): Flow<PagingData<Data>> {
+        return Pager(
+            config = PagingConfig(pageSize = 1, maxSize = 20),
+            pagingSourceFactory = { PaginationSource(remoteOperation, personDao) },
+        ).flow.cachedIn(viewModelScope)
     }
 
-    private fun getAllUsers() {
+    fun setUser() {
         viewModelScope.launch {
-            repository.getAllUsers(viewModelScope).catch {
-                Log.e(TAG, it.toString())
-            }.collect {
-                Log.e(
-                    "userData",
-                    it.toString(),
-                )
+            getAllUsersFromServer().collectLatest {
                 _user.value = it
-//                setUserResponseFromServer(it)
             }
         }
     }
-
-//    private fun setUserResponseFromServer(response: Resource<UserResponseDto>) {
-//        if (response is Resource.Success) {
-//            _user.value = response.data.data
-//        }
-//    }
 }
