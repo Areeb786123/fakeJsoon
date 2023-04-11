@@ -30,4 +30,5 @@ object ApplicationModule {
             PostApi::class.java,
         )
     }
+
 }
