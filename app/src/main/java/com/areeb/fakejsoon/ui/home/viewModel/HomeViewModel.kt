@@ -9,7 +9,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.areeb.fakejsoon.data.RemoteOperation
-import com.areeb.fakejsoon.data.models.Data
+import com.areeb.fakejsoon.data.models.common.UserModel
 import com.areeb.fakejsoon.data.network.local.PersonDao
 import com.areeb.fakejsoon.ui.home.pagination.PaginationSource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,11 +27,11 @@ class HomeViewModel @Inject constructor(
         private const val TAG = "homeViewModel"
     }
 
-    private val _user = MutableLiveData<PagingData<Data>>()
-    val user: LiveData<PagingData<Data>>
+    private val _user = MutableLiveData<PagingData<UserModel>>()
+    val user: LiveData<PagingData<UserModel>>
         get() = _user
 
-    private fun getAllUsersFromServer(): Flow<PagingData<Data>> {
+    private fun getAllUsersFromServer(): Flow<PagingData<UserModel>> {
         return Pager(
             config = PagingConfig(pageSize = 1, maxSize = 20),
             pagingSourceFactory = { PaginationSource(remoteOperation, personDao) },

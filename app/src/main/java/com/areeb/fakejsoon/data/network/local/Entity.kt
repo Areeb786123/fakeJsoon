@@ -10,6 +10,8 @@ data class PersonEntity(
     @PrimaryKey
     @ColumnInfo("id")
     val id: Int,
+    @ColumnInfo("email")
+    val email: String,
     @ColumnInfo("avatar")
     val avatar: String,
     @ColumnInfo("first_name")

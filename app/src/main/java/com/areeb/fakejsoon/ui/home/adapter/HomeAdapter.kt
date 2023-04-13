@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import com.areeb.fakejsoon.data.models.Data
+import com.areeb.fakejsoon.data.models.common.UserModel
 import com.areeb.fakejsoon.databinding.HomeItemBinding
 import com.areeb.fakejsoon.ui.common.DiffCallBack
 import com.areeb.fakejsoon.ui.home.viewHolder.HomeViewHolder
 
 class HomeAdapter(private val context: Context) :
-    PagingDataAdapter<Data, HomeViewHolder>(DiffCallBack()) {
+    PagingDataAdapter<UserModel, HomeViewHolder>(DiffCallBack()) {
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         getItem(position)?.let {
             holder.bind(it)
